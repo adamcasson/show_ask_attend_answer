@@ -76,7 +76,7 @@ def glimpse(attention_maps, image_features, num_glimpses=2, n=14):
         glimpse_map = Reshape((n,n,1))(glimpse_map)                               # Reshape to add channel dimension for K.tile() to work. (14,14) --> (14,14,1)
         glimpse_tile = Lambda(tile)(glimpse_map)                                  # Repeat the attention over the channel dimension. (14,14,1) --> (14,14,2048)
         weighted_features = multiply([image_features, glimpse_tile])              # Element wise multiplication to weight image features
-        weighted_average = AveragePooling2D(pool_size=(14,14))(weighted_features) # Average pool each channel. (14,14,2048) --> (1,1,2048)
+        weighted_average = AveragePooling2D(pool_size=(n,n))(weighted_features) # Average pool each channel. (14,14,2048) --> (1,1,2048)
         weighted_average = Flatten()(weighted_average)
         glimpse_list.append(weighted_average)
         
@@ -88,4 +88,3 @@ def tile(x):
 if __name__ == '__main__':
     vqa_model = show_ask_attend_answer(vocab_size=15000) # change vocab size to the real value. 15000 is just an estimate from what I used in past VQA models
     vqa_model.summary()
-    

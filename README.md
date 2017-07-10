@@ -12,7 +12,7 @@ If you have any questions about the code feel free to contact me, open an issue,
 Disclaimer: I’m not affiliated with the authors of the paper or Google Research. This is an unofficial implementation and results with this code may not directly reflect what is achieved in the paper.
 
 ## Requirements ##
-- Python 3.6 (2.7 should work too)
+- Python 3.5 (2.7 should work too)
 - Keras 2.0.2 (used Tensorflow 1.0.0 for the backend)
 
 ## Possible Issues ##
